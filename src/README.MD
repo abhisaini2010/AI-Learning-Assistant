@@ -1,1 +1,0 @@
-Developed an AI-powered learning platform using React, TypeScript, Tailwind CSS, and Gemini AI. Users can generate structured study notes, MCQs, interview questions, and flashcards for any topic. Implemented follow-up AI questioning, PDF export, local storage caching, search history management, dark mode, and responsive UI.
