@@ -19,7 +19,7 @@ const Navbar = ({
       sticky
       top-0
       z-50
-      px-8
+      px-4 md:px-8
       py-4
       flex
       justify-between
@@ -51,9 +51,10 @@ const Navbar = ({
           toggleDarkMode
         }
         className="
-          p-2
+          p-3
           rounded-lg
           hover:bg-slate-200
+          cursor-pointer
         "
       >
         {darkMode ? (

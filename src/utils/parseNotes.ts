@@ -4,8 +4,8 @@ export const parseNotes = (
   text: string
 ): NotesData => {
   const summary =
-    text.split("## Summary")[1]
-      ?.split("## Detailed Notes")[0] || "";
+    text.split("## Summary")[1]  // split() cuts a string wherever it finds the specified text,gets everything after: ##Summary
+      ?.split("## Detailed Notes")[0] || ""; //then,stops before next section,here we will get only summary content
 
   const detailed =
     text.split("## Detailed Notes")[1]
@@ -23,7 +23,7 @@ export const parseNotes = (
     text.split("## Flashcards")[1] || "";
 
   return {
-    summary: summary.trim(),
+    summary:summary.trim(),
     detailed: detailed.trim(),
     mcqs: mcqs.trim(),
     interview: interview.trim(),

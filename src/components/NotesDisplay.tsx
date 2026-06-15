@@ -185,6 +185,7 @@ const handleDownloadAllPDF = () => {
     border
     leading-8
     min-h-[300px]
+    overflow-x-auto
     ${
       darkMode
         ? "bg-slate-700 border-slate-600"
@@ -201,7 +202,7 @@ const handleDownloadAllPDF = () => {
 )}
 </div>
 
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex flex-col sm:flex-row gap-4 ">
         <button onClick={handleDownloadPDF} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl transition-all">Download PDF</button>
 
         <button onClick={handleDownloadAllPDF}

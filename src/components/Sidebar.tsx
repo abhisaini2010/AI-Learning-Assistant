@@ -14,7 +14,7 @@ const Sidebar = ({
   history,onSelectTopic,onDeleteTopic,darkmode
 }: Props) => {
   return (
-    <aside className={`w-72 min-h-screen border-r p-5 ${ darkmode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
+    <aside className={`w-full md:w-72 md:min-h-screen border-r p-5 ${ darkmode ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
       <h2 className="font-bold underline decoration-2 mb-4">
         Recent Searches
       </h2>
@@ -49,13 +49,13 @@ const Sidebar = ({
       onClick={() =>
         onDeleteTopic(item)
       }
-      className="
+      className={`
         px-2
         py-1
-        text-red-500
-        hover:text-red-700
-        font-bold
-      "
+        ${ darkmode ? 
+        "text-amber-200 hover:text-white" : 
+        "hover:text-red-700 font-bold" }
+      `}
     >
       X
     </button>

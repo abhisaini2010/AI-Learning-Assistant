@@ -31,6 +31,7 @@ const TopicInput = ({
         placeholder="Enter Topic..."
         className={`
   w-full
+  max-w-full
   p-4
   border
   rounded-xl

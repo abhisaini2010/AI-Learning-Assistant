@@ -18,11 +18,11 @@ const Home = () => {
   });
 const [loading, setLoading] = useState(false);
 
-const [history, setHistory] = useState<string[]>([]);
+const [history, setHistory] = useState<string[]>([]); // stores our search history e.g. react,javascript,typescript
 
-const [savedNotes, setSavedNotes] = useState<any[]>([]);
+const [savedNotes, setSavedNotes] = useState<any[]>([]);  // used to avoid API calls for previously generated topic notes
 
-const [selectedTopic,setSelectedTopic] = useState("");
+const [selectedTopic,setSelectedTopic] = useState(""); // Takes current topic , it is used by AskAI
 
 const [darkMode, setDarkMode] = useState(false);
 
@@ -34,7 +34,7 @@ useEffect(() => {
 
   if (savedHistory) {
     setHistory(
-      JSON.parse(savedHistory)
+      JSON.parse(savedHistory) // converts string into array
     );
   }
 }, []);
@@ -60,7 +60,7 @@ useEffect(() => {
 
   if (savedTheme) {
     setDarkMode(
-      JSON.parse(savedTheme)
+      JSON.parse(savedTheme)  // without this every refresh would reset everything and the  current mode will be reneweds
     );
   }
 }, []);
@@ -78,7 +78,7 @@ const handleDeleteHistory = (
 
   localStorage.setItem(
     "study-history",
-    JSON.stringify(updatedHistory)
+    JSON.stringify(updatedHistory) // it converts a js object,array,or primitive values into a JSON-formatted string  like this->'{}'
   );
 
   const updatedSavedNotes =
@@ -87,9 +87,7 @@ const handleDeleteHistory = (
         item.topic !== topicToDelete
     );
 
-  setSavedNotes(
-    updatedSavedNotes
-  );
+  setSavedNotes(updatedSavedNotes);
 
   localStorage.setItem(
     "saved-notes",
@@ -114,7 +112,7 @@ const handleDeleteHistory = (
   }
 };
 
-const handleHistoryClick = (
+const handleHistoryClick = (  // this function restores the notes when a particular topic is clicked
   topic: string
 ) => {
   const existingNote =
@@ -153,7 +151,7 @@ const handleGenerate = async (
 ) => {
 
 if (!topic.trim()) {
-    return;
+    return;   // it prevents empty requests.
   }
 
   try {
@@ -177,7 +175,7 @@ const updatedSavedNotes = [
     (item) =>
       item.topic !== topic
   ),
-].slice(0, 10);
+].slice(0, 10);   // here we want to maintain : Only latest 10 notes, No duplicate topics , Latest topic should come first (Save notes logic)
 
 setSavedNotes(
   updatedSavedNotes
@@ -211,13 +209,13 @@ localStorage.setItem(
   }
 };
   return (
-      <div className={`min-h-screen ${ darkMode ? "bg-slate-900 text-white" : "bg-gradient-to-br from-slate-100 to-indigo-100"}`}>
+      <div className={`min-h-screen  ${ darkMode ? "bg-slate-900 text-white" : "bg-gradient-to-br from-slate-100 to-indigo-100"}`}>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Sidebar history={history} onSelectTopic={handleHistoryClick} darkmode={darkMode} onDeleteTopic={handleDeleteHistory}/>
 
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 md:p-8">
           <TopicInput onGenerate={handleGenerate} selectedTopic={selectedTopic} loading={loading} darkMode={darkMode}/>
           <NotesDisplay notes={notes} loading={loading} darkMode={darkMode}/>
           {selectedTopic && (<AskAI topic={selectedTopic} darkMode={darkMode}/>
