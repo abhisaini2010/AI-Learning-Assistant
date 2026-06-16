@@ -21,7 +21,7 @@ const NotesDisplay = ({
     useState<TabType>("summary")
 
     const currentContent =
-  notes[activeTab];
+  notes[activeTab]; //here it will return summary content
 
   const handleCopy = async () => {
   try {

@@ -132,9 +132,9 @@ Ask anything about this topic...
     max-w-none
     dark:prose-invert
   " >
-     <ReactMarkdown
+     <ReactMarkdown // ReactMarkown converts the answer into beautiful formatting automatically like h1,h2,h3,ul,ol etc.
   components={{
-    h1: ({ children }) => (
+    h1: ({ children }) => (  // children is topic like (React) what we entered ,suppose gemini returns #React so the text after # is children 
   <h1
     className={`
       text-3xl
